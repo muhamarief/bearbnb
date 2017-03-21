@@ -10,12 +10,13 @@ class Clearance::UsersController < Clearance::BaseController
   end
 
   def new
-    @user = user_from_params
+    @user = User.new
     render template: "users/new"
   end
 
   def create
-    @user = user_from_params
+    @user = User.new(user_params)
+    byebug
 
     if @user.save
       sign_in @user
@@ -45,17 +46,20 @@ class Clearance::UsersController < Clearance::BaseController
     Clearance.configuration.redirect_url
   end
 
-  def user_from_params
-    email = user_params.delete(:email)
-    password = user_params.delete(:password)
-
-    Clearance.configuration.user_model.new(user_params).tap do |user|
-      user.email = email
-      user.password = password
-    end
-  end
-
   def user_params
-    params[Clearance.configuration.user_parameter] || Hash.new
+    params.require(:user).permit(:email, :password, :name, :age, :first_name, :last_name, :phone_number, :passport_number, :city)
+
+    # email = user_params.delete(:email)
+    # password = user_params.delete(:password)
+    #
+    # Clearance.configuration.user_model.new(user_params).tap do |user|
+    #   user.email = email
+    #   user.password = password
+    # end
   end
+
+  # def user_params
+
+  #   params[Clearance.configuration.user_parameter] || Hash.new
+  # end
 end

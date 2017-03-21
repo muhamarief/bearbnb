@@ -8,20 +8,37 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <% if signed_in? %>
-      Signed in as: <%= current_user.email %>
-      <%= button_to 'Sign out', sign_out_path, method: :delete %>
-    <% end %>
-
-    <div id="flash">
-      <% flash.each do |key, value| %>
-        <div class="flash <%= key %>"><%= value %></div>
+  <% if signed_in? %>
+    <body>
+      <% if signed_in? %>
+        Signed in as: <%= current_user.email %>
+        <%= button_to 'Sign out', sign_out_path, method: :delete %>
       <% end %>
-    </div>
 
-    <!-- <%= link_to "Connect With Facebook", "/auth/facebook" %> -->
+      <div id="flash">
+        <% flash.each do |key, value| %>
+          <div class="flash <%= key %>"><%= value %></div>
+        <% end %>
+      </div>
 
-    <%= yield %>
-  </body>
+      <%= yield %>
+    </body>
+
+  <% else %>
+    <body id='session-background'>
+      <% if signed_in? %>
+        Signed in as: <%= current_user.email %>
+        <%= button_to 'Sign out', sign_out_path, method: :delete %>
+      <% end %>
+
+      <div id="flash">
+        <% flash.each do |key, value| %>
+          <div class="flash <%= key %>"><%= value %></div>
+        <% end %>
+      </div>
+
+      <%= yield %>
+    </body>
+
+  <% end %>
 </html>

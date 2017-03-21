@@ -1,13 +1,27 @@
-<h1>Bearbnb</h1>
-<p> Welcome to Bearbnb </p>
+<center>
+  <div id='welcome-header'>
+    <h1>Bearbnb</h1>
+    <p id='tag-line-home'> Welcome to Bearbnb! Start your adventure with us </p>
+  </div>
+</center>
 
-<div id="clearance" class="sign-in">
-  <h2>Sign In</h2>
-  <!-- <h2><%= t(".title") %></h2> -->
+<div class='col-md-8 col-xs-8 col-sm-8 col-md-offset-2 col-xs-offset-2 col-sm-offset-2' id='welcome-container'>
+  <div id='container'>
+    <div id='sign-in-social' class='col-md-6 col-xs-6 col-sm-6'>
 
-  <%= render partial: '/sessions/form' %>
+      <%= button_to "/auth/facebook", :class => "btn btn-social btn-facebook" do %>
+        Continue with Facebook
+        <span class="fa fa-facebook"></span>
+      <% end %>
+      <!-- <%= link_to "Connect with Facebook", "/auth/facebook" %> -->
 
+    </div>
+    <div id-'sign-in-email' class='col-md-6 col-xs-6 col-sm-6'>
+      <div id="clearance" class="sign-in">
+        <p>Sign In</p>
+        <!-- <h2><%= t(".title") %></h2> -->
+        <%= render partial: '/sessions/form' %>
+      </div>
+    </div>
+  </div>
 </div>
-
-
-<%= link_to "Connect With Facebook", "/auth/facebook" %>
