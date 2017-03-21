@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
       u.password = SecureRandom.hex(6)
       u.authentications<<(authentication)
     end
+
   end
 
   def fb_token
