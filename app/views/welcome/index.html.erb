@@ -5,6 +5,12 @@
   </div>
 </center>
 
+<% if signed_in? %>
+
+  dashboard
+
+
+<% else %>
 <div class='col-md-8 col-xs-8 col-sm-8 col-md-offset-2 col-xs-offset-2 col-sm-offset-2' id='welcome-container'>
   <div id='container'>
     <div id='sign-in-social' class='col-md-6 col-xs-6 col-sm-6'>
@@ -25,3 +31,4 @@
     </div>
   </div>
 </div>
+<% end %>

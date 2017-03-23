@@ -16,13 +16,17 @@ class Clearance::UsersController < Clearance::BaseController
 
   def create
     @user = User.new(user_params)
-    byebug
-
     if @user.save
       sign_in @user
-      redirect_back_or url_after_create
+      redirect_to user_path(@user)
     else
-      render template: "users/new"
+      @message = @user.errors.full_messages
+      render :json => @message.to_json
+      # byebug
+      # respond_to do |format|
+      #   # format.html
+      #   format.json{ render :json => @message.to_json }
+      # end
     end
   end
 
@@ -47,7 +51,7 @@ class Clearance::UsersController < Clearance::BaseController
   end
 
   def user_params
-    params.require(:user).permit(:email, :password, :name, :age, :first_name, :last_name, :phone_number, :passport_number, :city)
+    params.require(:user).permit(:email, :password, :name, :age, :first_name, :last_name, :phone_number, :passport_number, :city, :nationality, :currency)
 
     # email = user_params.delete(:email)
     # password = user_params.delete(:password)
