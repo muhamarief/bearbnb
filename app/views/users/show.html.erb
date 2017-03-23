@@ -1,2 +1,89 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<center>
+  <div id='dashboard-header'>
+    <a href="/"><%= image_tag 'bearbnb-logo.png', :id => 'header-logo' %></a>
+  </div>
+</center>
+
+
+
+<div class="container">
+    <%= form_for @user do |f|%>
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+          <div class="panel panel-default">
+            <div class="panel panel-primary">
+              <h4 class="text-center">Update your information for access to book and rent places</h4>
+              <div class="panel-body">
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
+                        </span>
+                        <%= f.text_field :first_name, :class=> "form-control", :placeholder => "First Name" %>
+                        <!-- <input type="text" class="form-control" name= "user[first_name]" placeholder="First Name" /> -->
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                        <%= f.text_field :last_name, :class=> "form-control", :value => "#{current_user.last_name}", :placeholder => "Last Name"  %>
+                        <!-- <input type="text" class="form-control" placeholder="Last Name" /> -->
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-book"></span></span>
+                        <%= f.text_field :passport_number, :class=> "form-control", :value => "#{current_user.passport_number}", :placeholder => "Passport Number"  %>
+                        <!-- <input type="text" class="form-control" placeholder="Email" /> -->
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-phone"></span></span>
+                        <%= f.text_field :phone_number, :class=> "form-control", :value => "#{current_user.phone_number}", :placeholder => "Phone Number"  %>
+                        <!-- <input type="password" class="form-control" placeholder="New Password" /> -->
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-globe"></span></span>
+                        <%= f.text_field :nationality, :class=> "form-control", :value => "#{current_user.nationality}", :placeholder => "Nationality"  %>
+                        <!-- <input type="text" class="form-control" placeholder="Address" /> -->
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-map-marker"></span></span>
+                        <%= f.text_field :city, :class=> "form-control", :value => "#{current_user.city}", :placeholder => "Address(city)" %>
+                        <!-- <input type="text" class="form-control" placeholder="Age" /> -->
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-credit-card"></span></span>
+                        <%= f.text_field :currency, :class=> "form-control", :value => "#{current_user.currency}", :placeholder => "Currency"  %>
+                        <!-- <input type="text" class="form-control" placeholder="Credit card" /> -->
+                    </div>
+                </div>
+
+
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Save</button>
+              <!-- panel body -->
+              </div>
+          <!-- panel panel primary   -->
+           </div>
+        <!-- panel panel default, -->
+        </div>
+<!-- col-md-4 col-md-offset-4"> -->
+      </div>
+      <!-- row -->
+    </div>
+  <%end%>
+<!-- container -->
+</div>

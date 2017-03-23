@@ -2,8 +2,10 @@ class User < ActiveRecord::Base
   include Clearance::User
 
   # validates :passport_number, :phone_number, uniqueness: true
-  validates :email, uniqueness: true, presence: true
+  validates :email, uniqueness:{ message: "Your email has already been taken!"}
+  validates :email, presence: { message: "You need to type in an email!"}
   has_many :authentications, :dependent => :destroy
+  has_many :listings, :dependent => :destroy
 
   def self.create_with_auth_and_hash(authentication,auth_hash)
     create! do |u|
