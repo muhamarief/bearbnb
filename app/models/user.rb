@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   validates :email, presence: { message: "You need to type in an email!"}
   has_many :authentications, :dependent => :destroy
   has_many :listings, :dependent => :destroy
+  enum role: ['user', 'moderate', 'superadmin']
 
   def self.create_with_auth_and_hash(authentication,auth_hash)
     create! do |u|

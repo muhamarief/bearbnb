@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170323160000) do
+ActiveRecord::Schema.define(version: 20170324042549) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,42 +28,43 @@ ActiveRecord::Schema.define(version: 20170323160000) do
     t.string   "title"
     t.string   "description"
     t.string   "property_type"
-    t.string   "room_type"
+    t.integer  "room_type"
     t.string   "google_address"
     t.date     "start_date",                     null: false
     t.date     "end_date",                       null: false
     t.integer  "user_id"
     t.integer  "accomodate",     default: 1
+    t.integer  "bathroom"
     t.boolean  "wifi"
-    t.integer  "kitchen"
-    t.integer  "bed"
+    t.boolean  "kitchen"
+    t.integer  "bed",            default: 1
     t.boolean  "parking_spot",   default: false
     t.boolean  "smoke",          default: false
     t.boolean  "pet",            default: false
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
-    t.string   "phone_number"
-    t.string   "email"
-    t.boolean  "bathroom"
+    t.integer  "price"
+    t.string   "city"
     t.index ["user_id"], name: "index_listings_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-    t.string   "email",                          null: false
-    t.string   "encrypted_password", limit: 128, null: false
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
+    t.string   "email",                                      null: false
+    t.string   "encrypted_password", limit: 128,             null: false
     t.string   "confirmation_token", limit: 128
-    t.string   "remember_token",     limit: 128, null: false
+    t.string   "remember_token",     limit: 128,             null: false
     t.string   "first_name"
     t.string   "last_name"
     t.string   "passport_number"
     t.string   "nationality"
     t.string   "city"
     t.string   "phone_number"
-    t.string   "gender"
+    t.integer  "gender"
     t.date     "birthday"
     t.string   "currency"
+    t.integer  "role",                           default: 0
     t.index ["email"], name: "index_users_on_email", using: :btree
     t.index ["remember_token"], name: "index_users_on_remember_token", using: :btree
   end

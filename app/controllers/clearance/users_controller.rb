@@ -51,7 +51,7 @@ class Clearance::UsersController < Clearance::BaseController
   end
 
   def user_params
-    params.require(:user).permit(:email, :password, :name, :age, :first_name, :last_name, :phone_number, :passport_number, :city, :nationality, :currency)
+    params.require(:user).permit(:email, :password, :name, :age, :first_name, :last_name, :phone_number, :passport_number, :city, :nationality, :currency, :role)
 
     # email = user_params.delete(:email)
     # password = user_params.delete(:password)
