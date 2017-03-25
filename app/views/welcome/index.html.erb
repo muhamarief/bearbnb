@@ -1,13 +1,104 @@
-<center>
-  <div id='welcome-header'>
-    <h1>Bearbnb</h1>
-    <p id='tag-line-home'> Welcome to Bearbnb! Start your adventure with us </p>
-  </div>
-</center>
+<% if signed_in? %>
+  <center>
+    <div id='dashboard-header'>
+      <a href="/"><%= image_tag 'bearbnb-logo.png', :id => 'header-logo' %></a>
+      <p id='tag-line-home'> Welcome to Bearbnb! Start your adventure with us </p>
+    </div>
+  </center>
+<% else %>
+  <center>
+    <div id='welcome-header'>
+      <h1>Bearbnb</h1>
+      <p id='tag-line-home'> Welcome to Bearbnb! Start your adventure with us </p>
+    </div>
+  </center>
+<% end %>
 
 <% if signed_in? %>
+  <div class="container-fluid" style="background-color:#e8e8e8">
+    <div class="container container-pad" id="property-listings">
 
-  dashboard
+        <div class="row">
+            <div class="col-sm-6">
+              <% @listings_per_page.each do |listing| %>
+                <!-- Begin Listing: 609 W GRAVERS LN-->
+                <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
+                    <div class="media">
+                        <a class="pull-left" href="#" target="_parent">
+                        <%= image_tag 'default-picture-property.jpg', :class=> 'img-responsive', :alt=> 'image'%>
+                        </a>
+
+                        <div class="clearfix visible-sm"></div>
+
+                        <div class="media-body fnt-smaller">
+                            <a href="#" target="_parent"></a>
+
+                            <h4 class="media-heading">
+                              <a href="#" target="_parent"><%= listing.title %></a>
+                            </h4>
+
+                            <!-- <small class="pull-right"><%=listing.user.currency%> <%= listing.price %>/night</small> -->
+
+                            <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                                <li><% if listing.room_type == 1 %>
+                                      <%= 'Entire House/apartment'%>
+                                    <%elsif listing.room_type == 2 %>
+                                      <%= 'Private Room' %>
+                                    <% else %>
+                                      <%= 'Share Room'%>
+                                    <% end %>
+                                </li>
+
+                                <li style="list-style: none">|</li>
+
+                                <li><%= listing.bed%>bed(s)</li>
+
+                                <li style="list-style: none">|</li>
+
+                                <li><%=listing.bathroom%> bathroom</li>
+                            </ul>
+
+                            <p> class="hidden-xs"><%=truncate(listing.description, length:70)%></p><span class="fnt-smaller fnt-lighter fnt-arial"><%=listing.user.first_name%></span>
+                        </div>
+                    </div>
+                </div><!-- End Listing-->
+              <%end%>
+              <%if @listings_per_page.first.id == @listings.first.id %>
+                  <div class='col-sm-1'>
+                  </div>
+                  <div class='col-sm-10'>
+                  </div>
+                  <div class='col-sm-1'>
+                    <%=form_tag root_path, method: :get do %>
+                      <%= hidden_field_tag "value", 10 %>
+                      <%= submit_tag ">" %>
+                    <% end%>
+                  </div>
+              <%elsif @listings_per_page.last.id == @listings.last.id%>
+                <%=form_tag root_path, method: :get do %>
+                  <%= hidden_field_tag "value",  @counter - 10 %>
+                  <%= submit_tag "<" %>
+                <% end%>
+              <%else%>
+              <div class='col-sm-1'>
+                <%=form_tag root_path, method: :get do %>
+                  <%= hidden_field_tag "value",  @counter - 10 %>
+                  <%= submit_tag "<" %>
+                <% end%>
+              </div>
+              <div class='col-sm-10'>
+              </div>
+              <div class='col-sm-1'>
+                <%=form_tag root_path, method: :get do %>
+                  <%= hidden_field_tag "value",  @counter + 10 %>
+                  <%= submit_tag ">" %>
+                <% end%>
+              </div>
+              <%end%>
+            </div><!-- End Col -->
+        </div><!-- End row -->
+    </div><!-- End container -->
+  </div>
 
 
 <% else %>

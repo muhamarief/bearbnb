@@ -7,7 +7,9 @@
 
           <div class="col-lg-12 text-center" id='create-listing-btn'>
               <div id="success"></div>
-              <button type="submit" class="btn btn-xl get btn-success">Create Listing</button>
+              <%= form.button :class=> 'btn btn-xl get btn-success' do %>
+                Create Listing
+              <% end %>
           </div>
         <% end %>
       </div>

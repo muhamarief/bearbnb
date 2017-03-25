@@ -49,6 +49,10 @@ GEM
       railties (>= 3.1)
     builder (3.2.3)
     byebug (9.0.6)
+    carrierwave (1.0.0)
+      activemodel (>= 4.0.0)
+      activesupport (>= 4.0.0)
+      mime-types (>= 1.16)
     clearance (1.16.0)
       bcrypt
       email_validator (~> 1.4)
@@ -66,6 +70,8 @@ GEM
       activemodel
     erubis (2.7.0)
     execjs (2.7.0)
+    faker (1.7.3)
+      i18n (~> 0.5)
     faraday (0.11.0)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.18)
@@ -195,8 +201,10 @@ DEPENDENCIES
   bootstrap-sass (~> 3.3.6)
   bootstrap-social-rails
   byebug
+  carrierwave (~> 1.0)
   clearance
   coffee-rails (~> 4.2)
+  faker
   figaro
   font-awesome-sass
   jbuilder (~> 2.5)
