@@ -6,6 +6,7 @@ class ListingsController < ApplicationController
   end
 
   def create
+    byebug
     @listing = current_user.listings.new(listing_params)
     if @listing.save
       redirect_to '/'
@@ -29,8 +30,9 @@ class ListingsController < ApplicationController
   def delete
   end
 
+  private
   def listing_params
-    params.require(:listing).permit(:title, :description, :property_type, :room_type, :google_address, :start_date, :end_date, :user_id, :accomodate, :wifi, :kitchen, :bed, :parking_spot, :smoke, :pet, :phone_number, :email, :bathroom, :price, :city)
+    params.require(:listing).permit(:title, :description, :property_type, :room_type, :google_address, :start_date, :end_date, :user_id, :accomodate, :wifi, :kitchen, :bed, :parking_spot, :smoke, :pet, :phone_number, :email, :bathroom, :price, :city, {photos: []})
   end
 
 

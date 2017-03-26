@@ -1,15 +1,19 @@
 class UsersController < Clearance::UsersController
 
   def edit
+    #user
     @user = current_user
+    #superadmin
     @user_role = User.find(params[:id])
-    # byebug
+
+    #edit profile user
     if current_user.role == 'user'
       if @user.update(user_params)
         redirect_to root_path
       else
         redirect_to user_path(@user)
       end
+    #edit user role by superadmin
     else
       if @user_role.update(user_params)
         redirect_to root_path
