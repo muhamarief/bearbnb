@@ -11,16 +11,23 @@
     <div class="col-md-8">
         <div class="row">
             <div class="col-md-6">
-              <!-- PITCURES WILL BE HERE -->
-
+              <div class="form-group">
+                  <div class="input-group">
+                      <%= form.file_field :photos, multiple: true, :class=> "form-control"%>
+                  </div>
+              </div>
             </div>
 
             <div class="col-md-6">
               <p class='listing-input'><strong><i class="fa fa-envelope"></i>  Email Address</strong><br>
-                <%= form.text_field :email, :class=> "form-control", :placeholder => "Public Contact Number", :value => current_user.email %></p>
+                <div class='form-control'>
+                  <p><%= current_user.email %>
+                </div>
 
               <p class='listing-input'><strong><i class="fa fa-phone"></i> Phone Number</strong><br>
-                <%= form.text_field :phone_number, :class=> "form-control", :placeholder => "Public Phone Number", :value => current_user.phone_number %></p>
+                <div class='form-control'>
+                  <p><%= current_user.phone_number %>
+                </div>
 
               <p class='listing-input'><strong><i class="fa fa-money"></i> Price(<%=current_user.currency%>)</strong><br>
                 <%= form.text_field :price, :class=> "form-control", :placeholder => "Price Per Night" %></p>
@@ -91,13 +98,13 @@
     <div class='each-filter-container'>
       <p class='listing-input'><strong><i class="glyphicon glyphicon-pencil"></i> Bed </strong><br>
       <div class='col-md-4 col-xs-4 col-sm-4'>
-        <%= form.radio_button :kitchen, :value=> 1 %> 1 Bed <br>
+        <%= form.radio_button :bed, :value=> 1 %> 1 Bed <br>
       </div>
       <div class='col-md-4 col-xs-4 col-sm-4'>
-        <%= form.radio_button :kitchen, :value=> 2 %> 2 - 3 Beds <br>
+        <%= form.radio_button :bed, :value=> 2 %> 2 - 3 Beds <br>
       </div>
       <div class='col-md-4 col-xs-4 col-sm-4'>
-        <%= form.radio_button :kitchen, :value=> 3 %> > >3 Beds <br>
+        <%= form.radio_button :bed, :value=> 3 %> > >3 Beds <br>
       </div>
     </div>
   </div>

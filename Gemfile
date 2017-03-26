@@ -54,16 +54,22 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 #user authentication
 gem 'omniauth'
+
 #user facebook authentication
 gem 'omniauth-facebook'
+
 #user authentication
 gem 'clearance'
 gem 'figaro'
+
 #boostrap for rails
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'font-awesome-sass'
 gem 'bootstrap-social-rails'
+
 #faker
 gem 'faker'
+
 #uploading image
 gem 'carrierwave', '~> 1.0'
+gem "fog-aws"
