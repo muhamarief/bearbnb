@@ -73,3 +73,6 @@ gem 'faker'
 #uploading image
 gem 'carrierwave', '~> 1.0'
 gem "fog-aws"
+
+#resizing and images
+gem "mini_magick"
