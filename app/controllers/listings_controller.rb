@@ -6,7 +6,7 @@ class ListingsController < ApplicationController
   end
 
   def create
-    # byebug
+    byebug
     @listing = current_user.listings.new(listing_params)
     if @listing.save
       redirect_to '/'
