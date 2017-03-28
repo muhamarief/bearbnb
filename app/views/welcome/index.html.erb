@@ -34,7 +34,7 @@
                             <a href="#" target="_parent"></a>
 
                             <h4 class="media-heading">
-                              <a href="#" target="_parent"><%= listing.title %></a>
+                              <a href="/listings/<%=listing.id%>" target="_parent"><%= listing.title %></a>
                             </h4>
 
                             <!-- <small class="pull-right"><%=listing.user.currency%> <%= listing.price %>/night</small> -->
@@ -58,7 +58,7 @@
                                 <li><%=listing.bathroom%> bathroom</li>
                             </ul>
 
-                            <p> class="hidden-xs"><%=truncate(listing.description, length:70)%></p><span class="fnt-smaller fnt-lighter fnt-arial"><%=listing.user.first_name%></span>
+                            <p class="hidden-xs"><%=truncate(listing.description, length:70)%></p><span class="fnt-smaller fnt-lighter fnt-arial"><%=listing.user.first_name%></span>
                         </div>
                     </div>
                 </div><!-- End Listing-->
