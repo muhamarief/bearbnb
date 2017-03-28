@@ -21,9 +21,20 @@ Rails.application.routes.draw do
   patch "/users/:id", to: "users#edit", as: "edit_user"
 
   #listings
-  resources :listings
-  get "/users/:user_id/listings/:id", to: "listings#edit"
-  patch "/users/:user_id/listings/:id", to: "listings#update"
+  resources :users do
+    resources :listings, only: [:edit,:update]
+  end
+  resources :listings, except: [:edit, :update]
+  # get "/users/:user_id/listings/:id", to: "listings#edit"
+  # patch "/users/:user_id/listings/:id", to: "listings#update"
+
+  resources :reservations
+  get "/listings/:listing_id/reservations/new", to: "reservations#new"
+  post "/listings/:listing_id/reservations/create", to: "reservations#create", as:'listing_reservations'
+  get "/listings/:listing_id/reservations/:id" => "reservations#show"
+  # resources :listings do
+  #   resources :reservations
+  # end
 
 
 

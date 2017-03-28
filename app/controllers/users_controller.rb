@@ -14,7 +14,7 @@ class UsersController < Clearance::UsersController
         redirect_to user_path(@user)
       end
     #edit user role by superadmin
-    else
+    elsif current_user.role =='superadmin'
       if @user_role.update(user_params)
         redirect_to root_path
       else

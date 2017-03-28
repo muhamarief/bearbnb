@@ -32,11 +32,30 @@
               <p class='listing-input'><strong><i class="fa fa-money"></i> Price(<%=current_user.currency%>)</strong><br>
                 <%= form.text_field :price, :class=> "form-control", :placeholder => "Price Per Night" %></p>
 
-              <p class='listing-input'><strong><i class="fa fa-calendar-check-o"></i> Start Available Date(DD/MM/YYYY)</strong><br>
-                <%= form.text_field :start_date, :class=> "form-control", :placeholder => "Start Date" %></p>
+              <!-- <p class='listing-input'><strong><i class="fa fa-calendar-check-o"></i> Start Available Date</strong><br>
+                <%= form.date_field :start_date, :class=> "form-control", :placeholder => "Start Date" %></p>
 
-              <p class='listing-input'><strong><i class="fa fa-calendar-times-o"></i> End Available Date(DD/MM/YYYY)</strong><br>
-                <%= form.text_field :end_date, :class=> "form-control", :placeholder => "End Date" %></p>
+              <p class='listing-input'><strong><i class="fa fa-calendar-times-o"></i> End Available Date</strong><br>
+                <%= form.date_field :end_date, :class=> "form-control", :placeholder => "End Date" %></p> -->
+
+              <p class='listing-input'><strong><i class="fa fa-calendar-check-o"></i> Start Available Date</strong><br>
+              <div class='input-group date' id='datetimepicker1'>
+                  <!-- <input type='text' class="form-control" name="listing[start_date]" id="listing_start_date" /> -->
+                  <%= form.text_field :start_date, class: "form-control"%>
+                  <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-calendar"></span>
+                  </span>
+              </div>
+
+              <p class='listing-input'><strong><i class="fa fa-calendar-times-o"></i> End Available Date</strong><br>
+                <div class='input-group date' id='datetimepicker2'>
+                    <!-- <input type='text' class="form-control" name="listing[start_date]" id="listing_start_date" /> -->
+                    <%= form.text_field :end_date, class: "form-control"%>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+
 
             </div>
         </div>

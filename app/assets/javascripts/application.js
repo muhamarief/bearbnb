@@ -14,3 +14,10 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+//= require jquery-ui
+
+//
+// NEW (add these two lines)
+//= require moment
+//= require bootstrap-datetimepicker
+//= require bootstrap-datepicker

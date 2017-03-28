@@ -1,0 +1,103 @@
+<div class="col-md-8 col-sm-8 col-xs-8 col-md-offset-2 col-sm-offset-2 col-xs-offset-2">
+  <div class="container">
+    <div class="row">
+    	<div class="artist-data pull-left">
+  			<img src="http://placehold.it/1000x500" alt="" class="img-responsive" />
+      </div>
+
+      <div class="artst-prfle col-md-7 col-sm-7 col-xs-7">
+
+      	<div class="art-title">
+        	<%= @listing.title%>
+          <span class="artst-sub">By
+            <span class="byname">
+              <%=@listing.user.first_name%>, <%=@listing.user.last_name%>
+            </span>
+          </span>
+          <span class="artst-sub">at
+            <span class="byname">
+              <%=@listing.created_at%>
+            </span>
+          </span>
+        </div>
+
+        <div class="artst-prfle col-md-4 col-sm-4 col-xs-4">
+          <center>
+            <p class='listing-icons'>
+              <i class="fa fa-home" aria-hidden="true"></i>
+            </p>
+            <p class='listing-icons-details'>
+              <%if @listing.room_type == 0%>
+                Entire Home
+              <%elsif @listing.room_type == 1%>
+                Private Room
+              <% else %>
+                Share Room
+              <% end %>
+            </p>
+          </center>
+        </div>
+
+        <div class="artst-prfle col-md-4 col-sm-4 col-xs-4">
+          <center>
+            <p class='listing-icons'>
+              <i class="fa fa-users" aria-hidden="true"></i>
+            </p>
+            <p class='listing-icons-details'>
+              <%= @listing.accomodate %>
+            </p>
+          </center>
+        </div>
+
+        <div class="artst-prfle col-md-4 col-sm-4 col-xs-4">
+          <center>
+            <p class='listing-icons'>
+              <i class="fa fa-bed" aria-hidden="true"></i>
+            </p>
+            <p class='listing-icons-details'>
+              <%= @listing.bed%>
+            </p>
+          </center>
+        </div>
+
+        <div class="art-title">
+        	<%= @listing.title%>
+          <span class="artst-sub">By
+            <span class="byname">
+              <%=@listing.user.first_name%>, <%=@listing.user.last_name%>
+            </span>
+          </span>
+          <span class="artst-sub">at
+            <span class="byname">
+              <%=@listing.created_at%>
+            </span>
+          </span>
+        </div>
+
+
+      </div>
+
+      <div class="artst-prfle col-md-5 col-sm-5 col-xs-5">
+        <%= form_for [@listing, @reservation] do |form| %>
+            <div class="artst-prfle col-md-6 col-sm-6 col-xs-6">
+              <p class='listing-input'><strong> Check In</strong><br>
+                <%= form.date_field :start_date, :class=> "form-control", min: @listing.start_date, max: @listing.end_date %>
+              </p>
+            </div>
+            <div class="artst-prfle col-md-6 col-sm-6 col-xs-6">
+              <p class='listing-input'><strong>Check Out</strong><br>
+              <%= form.date_field :end_date, :class=> "form-control", min: @listing.start_date, max: @listing.end_date %>
+              </p>
+            </div>
+            <%= form.button :class=> 'btn btn-xl get btn-success' do %>
+              Request to Book
+            <% end %>
+        <% end %>
+      </div>
+
+      <div class="bot-links">
+
+      </div>
+    </div>
+  </div>
+</div>
