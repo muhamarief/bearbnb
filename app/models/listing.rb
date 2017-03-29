@@ -6,4 +6,14 @@ class Listing < ActiveRecord::Base
 
   mount_uploaders :photos, PhotosUploader
 
+  def disable_dates
+    disabled_array = []
+    self.reservations.each do |x|
+      start = x.start_date
+      last = x.end_date
+      disabled_array << (start..last).to_a
+    end
+    disabled_array.flatten
+  end
+
 end

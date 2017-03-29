@@ -16,7 +16,9 @@ class ListingsController < ApplicationController
 
   def show
     @listing = Listing.find(params[:id])
+    @unavailable_dates = @listing.disable_dates
     @reservation = @listing.reservations.new
+    # return unavailable_dates.to_json
   end
 
   def index

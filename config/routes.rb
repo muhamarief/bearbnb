@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'braintree/new'
+
   root 'welcome#index'
 
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
@@ -28,10 +30,13 @@ Rails.application.routes.draw do
   # get "/users/:user_id/listings/:id", to: "listings#edit"
   # patch "/users/:user_id/listings/:id", to: "listings#update"
 
-  resources :reservations
-  get "/listings/:listing_id/reservations/new", to: "reservations#new"
-  post "/listings/:listing_id/reservations/create", to: "reservations#create", as:'listing_reservations'
-  get "/listings/:listing_id/reservations/:id" => "reservations#show"
+  resources :listings do
+    resources :reservations, only: [:new, :create, :show]
+  end
+
+  # get "/listings/:listing_id/reservations/new", to: "reservations#new"
+  # post "/listings/:listing_id/reservations/create", to: "reservations#create", as:'listing_reservations'
+  # get "/listings/:listing_id/reservations/:id" => "reservations#show"
   # resources :listings do
   #   resources :reservations
   # end

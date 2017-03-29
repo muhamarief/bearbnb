@@ -78,15 +78,28 @@
       </div>
 
       <div class="artst-prfle col-md-5 col-sm-5 col-xs-5">
+
         <%= form_for [@listing, @reservation] do |form| %>
             <div class="artst-prfle col-md-6 col-sm-6 col-xs-6">
               <p class='listing-input'><strong> Check In</strong><br>
-                <%= form.date_field :start_date, :class=> "form-control", min: @listing.start_date, max: @listing.end_date %>
+                <div class='input-group date create-reservation-date'>
+                  <%= form.text_field :start_date, class: "form-control"%>
+                  <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-calendar"></span>
+                  </span>
+                </div>
+                <!-- <%= form.date_field :start_date, :class=> "form-control", min: @listing.start_date, max: @listing.end_date %> -->
               </p>
             </div>
             <div class="artst-prfle col-md-6 col-sm-6 col-xs-6">
               <p class='listing-input'><strong>Check Out</strong><br>
-              <%= form.date_field :end_date, :class=> "form-control", min: @listing.start_date, max: @listing.end_date %>
+                <div class='input-group date create-reservation-date'>
+                    <%= form.text_field :end_date, class: "form-control"%>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+                <!-- <%= form.date_field :end_date, :class=> "form-control", min: @listing.start_date, max: @listing.end_date %> -->
               </p>
             </div>
             <%= form.button :class=> 'btn btn-xl get btn-success' do %>
@@ -98,6 +111,9 @@
       <div class="bot-links">
 
       </div>
+
+      <%= content_tag :p, class: 'unavailable_dates', data:{abc: @unavailable_dates} do %>
+      <% end %>
     </div>
   </div>
 </div>

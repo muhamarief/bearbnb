@@ -6,8 +6,14 @@ class ReservationsController < ApplicationController
 
   def create
     @listing = Listing.find(params[:listing_id])
-    @reservation = current_user.reservations.new(reservation_params)
-    if @reservation.date_confirmation
+
+    a = Date.strptime(params[:reservation][:start_date],'%m/%d/%Y')
+    b = Date.strptime(params[:reservation][:end_date],'%m/%d/%Y')
+
+    @reservation = current_user.reservations.new(start_date: a, end_date: b)
+    # @reservation.listing_id = params[:listing_id]
+
+    if @reservation.date_confirmation && !@reservation.overlap_dates?(@listing.reservations) && @reservation.available_dates?(@listing)
       @reservation.listing_id = @listing.id
       if @reservation.save
         redirect_to '/'
