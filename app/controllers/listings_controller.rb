@@ -6,7 +6,15 @@ class ListingsController < ApplicationController
   end
 
   def create
+    # listing_params[:start_date] = Date.strptime(params[:listing][:start_date],'%m/%d/%Y')
+    # listing_params[:end_date] = Date.strptime(params[:listing][:end_date],'%m/%d/%Y')
     @listing = current_user.listings.new(listing_params)
+    a = Date.strptime(params[:listing][:start_date],'%m/%d/%Y')
+    b = Date.strptime(params[:listing][:end_date],'%m/%d/%Y')
+
+    @listing.start_date = a
+    @listing.end_date = b
+
     if @listing.save
       redirect_to '/'
     else
