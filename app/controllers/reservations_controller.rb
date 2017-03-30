@@ -16,8 +16,10 @@ class ReservationsController < ApplicationController
     if @reservation.date_confirmation && !@reservation.overlap_dates?(@listing.reservations) && @reservation.available_dates?(@listing)
       @reservation.listing_id = @listing.id
       if @reservation.save
-        ReservationMailer.booking_created_customer_email(@reservation).deliver_now
-        ReservationMailer.booking_created_host_email(@reservation).deliver_now
+        ReservationMailersJob.perform_now(@reservation)
+        # ReservationMailer.booking_created_customer_email(@reservation).deliver_now
+        # ReservationMailer.booking_created_host_email(@reservation).deliver_now
+
         redirect_to '/'
       else
         redirect_to listings_path(Listing.find(params[:id]))
