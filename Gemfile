@@ -90,3 +90,6 @@ gem 'json'
 
 #braintree
 gem 'braintree'
+
+#sidekiq mailers
+gem 'sidekiq'
