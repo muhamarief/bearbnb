@@ -27,20 +27,19 @@ Rails.application.routes.draw do
     resources :listings, only: [:edit,:update]
   end
   resources :listings, except: [:edit, :update]
-  # get "/users/:user_id/listings/:id", to: "listings#edit"
-  # patch "/users/:user_id/listings/:id", to: "listings#update"
 
   resources :listings do
-    resources :reservations, only: [:new, :create, :show]
+    resources :reservations, only: [:new, :create, :show, :index]
   end
 
-  # get "/listings/:listing_id/reservations/new", to: "reservations#new"
-  # post "/listings/:listing_id/reservations/create", to: "reservations#create", as:'listing_reservations'
-  # get "/listings/:listing_id/reservations/:id" => "reservations#show"
-  # resources :listings do
-  #   resources :reservations
-  # end
+  resources :reservations do
+    resources :braintree, only: :new
+  end
+  post 'braintree/checkout'
 
+  get '/my_trips', to: "reservations#index", as: "my_reservations"
+  get '/users/:user_id/reservations/:id', to: "reservations#show", as: "my_reservation"
 
+  # patch '/reservations/:reservation_id', to: "reservation#update_request"
 
 end

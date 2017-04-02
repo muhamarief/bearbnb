@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/*/
 
-//////////////////////////////////// 1. USER PEROFILE EDIT //////////////////////////////////
+//////////////////////////////////// 1. USER PROFILE EDIT //////////////////////////////////
 
 #dashboard-header {
   margin-top: 50px;
@@ -39,3 +39,19 @@
     color: rgb(255, 255, 255);
 }
 .form-signup input[type="text"],.form-signup input[type="password"] { border: 1px solid rgb(50, 118, 177); }
+
+
+//////////////////////////////////// 2. USER NEW  //////////////////////////////////
+// body { padding-top:30px; }
+.form-control { margin-bottom: 10px; }
+
+#sign-up-container {
+  // padding-top:30px;
+  margin:0 auto;
+}
+
+
+//////////////////////////////////// 2. USER SHOW  //////////////////////////////////
+.user-show-profile {
+  align-items: center;
+}

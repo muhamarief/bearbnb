@@ -11,4 +11,10 @@ class WelcomeController < ApplicationController
       @listings_per_page = Listing.all.limit(10).offset(@counter)
     end
   end
+
+  def edit
+    
+  end
+
+
 end

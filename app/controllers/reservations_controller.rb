@@ -6,12 +6,10 @@ class ReservationsController < ApplicationController
 
   def create
     @listing = Listing.find(params[:listing_id])
-
     a = Date.strptime(params[:reservation][:start_date],'%m/%d/%Y')
     b = Date.strptime(params[:reservation][:end_date],'%m/%d/%Y')
 
     @reservation = current_user.reservations.new(start_date: a, end_date: b)
-    # @reservation.listing_id = params[:listing_id]
 
     if @reservation.date_confirmation && !@reservation.overlap_dates?(@listing.reservations) && @reservation.available_dates?(@listing)
       @reservation.listing_id = @listing.id
@@ -31,11 +29,30 @@ class ReservationsController < ApplicationController
   end
 
   def show
+    if params[:listing_id]
+      @reservation = Listing.find(params[:listing_id]).reservations.find(params[:id])
+    else
+      @reservation = current_user.reservations.find(params[:id])
+    end
+  end
+
+  def update
+    @reservation = Reservation.find(params[:id])
+    if @reservation.request_status.nil?
+      @reservation.request_status = params[:reservation][:request_status]
+      if @reservation.save
+        redirect_to '/'
+      end
+    end
 
   end
 
   def index
-
+    if params[:listing_id]
+      @reservations = Listing.find(params[:listing_id]).reservations
+    else
+      @reservations = current_user.reservations
+    end
   end
 
   private
