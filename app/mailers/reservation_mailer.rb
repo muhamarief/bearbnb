@@ -5,7 +5,7 @@ class ReservationMailer < ApplicationMailer
   def booking_created_customer_email(reservation)
     @customer = reservation.user
     @host = reservation.listing.user
-    @url = "localhost://3000/listings/#{reservation.listing_id}/reservations/#{reservation.id}"
+    @url = "http://localhost:3000/users/#{@customer.id}/reservations/#{reservation.id}"
     mail(to: "#{@customer.email}", subject: "You have sent a booking request to #{@host.first_name}")
 
   end
@@ -13,8 +13,8 @@ class ReservationMailer < ApplicationMailer
   def booking_created_host_email(reservation)
     @customer = reservation.user
     @host = reservation.listing.user
-    @url = "localhost://3000/listings/#{reservation.listing_id}/reservations/#{reservation.id}"
-    mail(to: "#{@host.email}", subject: "You have received a booking from #{@customer}")
+    @url = "http://localhost:3000/listings/#{reservation.listing_id}/reservations/#{reservation.id}"
+    mail(to: "#{@host.email}", subject: "You have received a booking from #{@customer.first_name}")
   end
 
 end

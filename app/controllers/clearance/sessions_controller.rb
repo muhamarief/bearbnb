@@ -23,7 +23,11 @@ class Clearance::SessionsController < Clearance::BaseController
 
     sign_in(@user) do |status|
       if status.success?
-        redirect_to user_path(@user)
+        # if @user.passport_number.nil? || @user.city.nil? || @user.nationality.nil?
+          redirect_to user_path(@user)
+        # else
+        #   redirect_to root_path
+        # end
       else
         flash.now.notice = status.failure_message
         render template: "sessions/new", status: :unauthorized

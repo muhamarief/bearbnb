@@ -117,3 +117,10 @@
     </div>
   </div>
 </div>
+
+
+<% if @listing.user == current_user %>
+<%= render partial: 'listings/reservations' %>
+
+
+<% end %>

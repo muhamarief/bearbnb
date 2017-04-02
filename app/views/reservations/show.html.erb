@@ -1,0 +1,82 @@
+<div class='col-md-8 col-xs-8 col-sm-8 col-md-offset-2 col-xs-offset-2 col-sm-offset-2'>
+  <div>
+    <center>
+      <%= image_tag current_user.avatar.thumb%>
+    </center>
+  </div>
+</div>
+
+<div class='col-md-8 col-xs-8 col-sm-8 col-md-offset-2 col-xs-offset-2 col-sm-offset-2' id='reservation-request-details'>
+
+  <div class='col-md-6 col-xs-6 col-sm-6'>
+
+    <div id='reservation-dates'>
+      <p> Reservation Details </p>
+      <div class='col-md-6 col-xs-6 col-sm-6'>
+        <div class='row'>
+          <p> CHECK IN DATE </p>
+          <%= @reservation.start_date %>
+        </div>
+      </div>
+
+      <div class='col-md-6 col-xs-6 col-sm-6'>
+        <div class='row'>
+          <p> CHECK OUT DATE </p>
+          <%= @reservation.end_date %>
+        </div>
+      </div>
+    </div>
+
+    <div id='reservation-price'>
+      <p> TOTAL PRICE </p>
+      <%=@reservation.total_price %>
+    </div>
+
+
+  </div>
+
+  <div class='col-md-6 col-xs-6 col-sm-6'>
+    <p> Customer Details </p>
+    <p> Name : <%=@reservation.user.first_name%></p>
+    <p> City : <%=@reservation.user.city%> </p>
+    <p> Nationality: <%=@reservation.user.nationality%></p>
+
+  </div>
+
+</div>
+
+<div class='col-md-8 col-xs-8 col-sm-8 col-md-offset-2 col-xs-offset-2 col-sm-offset-2'>
+
+  <div class='col-md-6 col-xs-6 col-sm-6'>
+    <% if current_user == @reservation.listing.user%>
+      <div class='col-md-6 col-xs-6 col-sm-6'>
+        <%=form_for @reservation do |form| %>
+          <%= form.hidden_field :request_status, value: true %>
+          <%= form.submit 'Accept', class: 'btn btn-success' %>
+        <% end %>
+      </div>
+      <div class='col-md-6 col-xs-6 col-sm-6'>
+        <%=form_for @reservation do |form| %>
+          <%= form.hidden_field :request_status, value: false %>
+          <%= form.submit 'Decline', class: 'btn btn-danger' %>
+        <% end %>
+      </div>
+    <% else %>
+      <% if @reservation.request_status.nil? %>
+          <p> We have sent your request to the host </p>
+          <p> Please wait :) </p>
+      <% elsif @reservation.request_status == true %>
+          <%= button_to "Payment", new_reservation_braintree_path(@reservation), :id => "open-contacts-dialog-btn", :class => "inbox-sf-add-btn tip", :method => :get %>
+      <% else %>
+          <p> We are sorry, your request has been rejected by the host </p>
+      <% end %>
+
+    <% end %>
+  </div>
+  <% if current_user == @reservation.listing.user%>
+  <% end %>
+
+  <div class='col-md-6 col-xs-6 col-sm-6'>
+  </div>
+
+</div>

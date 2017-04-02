@@ -1,0 +1,17 @@
+<h1>Reservations of each listing</h1>
+<table class ="table">
+<tr>
+  <th>Start Date</th>
+  <th>End Date</th>
+  <th></th>
+</tr>
+<% @listing.reservations.each do |r| %>
+<tr>
+  <td><%= r.start_date %></td>
+  <td><%= r.end_date %></td>
+
+  <td><a href="/listings/<%=@listing.id %>/reservations/<%=r.id%>" %>See more </a></td>
+</tr>
+<% end %>
+
+</table>

@@ -1,0 +1,13 @@
+<table class ="table">
+<tr>
+  <th>Start Date</th>
+  <th>End Date</th>
+</tr>
+<% @reservations.each do |r| %>
+<tr>
+  <td><%= r.start_date %></td>
+  <td><%= r.end_date %></td>
+</tr>
+<% end %>
+
+</table>

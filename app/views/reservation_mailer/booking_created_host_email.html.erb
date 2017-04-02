@@ -1,4 +1,12 @@
-<h1>Congratulations! You have received a booking from <%= @customer.last_name %>, <%=@customer.first_name%></h1>
-   <p>
-     You can see details of your the new booking request and verify through here: <a href='<%= @url %>'> verified new booking request</a>
-   </p>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Congratulations! You have received a request for booking from <%= @customer.last_name %>, <%=@customer.first_name%></h1>
+
+     <p>
+       You can see details of your the new booking request and verify through here:</p> <a href="<%= @url %>"> new booking request </a>
+   </body>
+</html>
